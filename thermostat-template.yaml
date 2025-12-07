@@ -5,35 +5,35 @@ blueprint:
   input:
     target_thermostat:
       name: Thermostat
-      descprition: "Select appropriate thermostat"
+      descprition: Select appropriate thermostat
       selector:
         entity:
           filter:
             - domain: climate
     hvac_level_button:
       name: Thermostat Toggle
-      descprition: "Select input boolean for the appropriate HVAC Level"
+      descprition: Select input boolean for the appropriate HVAC Level
       selector:
         entity:
           filter:
             - domain: input_boolean
     hvac_level_button_state:
       name: Thermostat Toggle State
-      descprition: "Thermostat toggle state to be used, should only need to be checked for on"
+      descprition: Thermostat toggle state to be used, should only need to be checked for on
       selector:
         entity:
           filter:
             - domain: input_boolean
     hvac_mode_button:
       name: Thermostat Toggle
-      descprition: "Select input boolean for the appropriate HVAC mode"
+      descprition: Select input boolean for the appropriate HVAC mode
       selector:
         entity:
           filter:
             - domain: input_boolean
     target_temperature:
       name: Thermostat Temperature
-      description: "Set target temperature"
+      description: Set target temperature
       selector:
         entity:
           filter:
