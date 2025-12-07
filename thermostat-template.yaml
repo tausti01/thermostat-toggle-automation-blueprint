@@ -26,7 +26,7 @@ blueprint:
             - domain: input_boolean
     hvac_mode_button:
       name: Thermostat Toggle
-      descprittion: "Select input boolean for the appropriate HVAC mode"
+      descprition: "Select input boolean for the appropriate HVAC mode"
       selector:
         entity:
           filter:
@@ -47,7 +47,6 @@ blueprint:
           filter:
             - domain: climate
               device_class: target_temperature
-
   triggers:
     - trigger: state
       entity_id:
