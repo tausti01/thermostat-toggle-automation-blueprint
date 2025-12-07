@@ -1,0 +1,74 @@
+blueprint:
+  name: Thermostat Toggle Automation
+  description: "Allows for thermostat automations to be quickly added for toggle input based on pre-defined settings"
+  mode: single
+  input:
+    target_thermostat:
+      name: "Thermostat"
+      descprition: "Select appropriate thermostat"
+      selector:
+        entity:
+          filter:
+            - domain: climate
+    hvac_level_button:
+      name: "Thermostat Toggle"
+      descprition: "Select input boolean for the appropriate HVAC Level"
+      selector:
+        entity:
+          filter:
+            - domain: input_boolean
+    hvac_level_button_state:
+      name: "Thermostat Toggle State"
+      descprition: "Thermostat toggle state to be used, should only need to be checked for on"
+      selector:
+        entity:
+          filter:
+            - domain: input_boolean
+    hvac_mode_button:
+      name: "Thermostat Toggle"
+      descprittion: "Select input boolean for the appropriate HVAC mode"
+      selector:
+        entity:
+          filter:
+            - domain: input_boolean
+    hvac_mode_state:
+      name: "HVAC State"
+      description: "HVAC state to be used, on or off"
+      selector:
+        entity:
+          filter:
+            - domain: climate
+              device_class: hvac_mode
+    target_temperature:
+      name: "Thermostat Temperature"
+      description: "Set target temperature"
+      selector:
+        entity:
+          filter:
+            - domain: climate
+              device_class: target_temperature
+
+  triggers:
+    - trigger: state
+      entity_id:
+        - !input hvac_level_button
+      to:
+        - !input hvac_level_button_state
+  conditions:
+    - condition: state
+      entity_id: !input hvac_mode_button
+      state:
+        - !input hvac_mode_state
+  actions:
+    - action: climate.set_hvac_mode
+      metadata: {}
+      data:
+        hvac_mode: !input hvac_mode_state
+      target:
+        entity_id: !input target_thermostat
+    - action: climate.set_temperature
+      metadata: {}
+      data:
+        temperature: target_temperature
+      target:
+        entity_id: !input target_thermostat
